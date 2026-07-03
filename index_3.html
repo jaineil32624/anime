@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arena Codex — Collect. Spin. Battle.</title>
+<meta name="description" content="A fan's guide to creature-collecting battles, spinning top duels, and anime storytelling — with original characters, lore, quizzes, and infographics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --void: #05040a;
+  --bg-0: #0a0812;
+  --bg-1: #100c1c;
+  --bg-2: #17121f;
+  --card-bg: #15111f;
+  --card-bg-2: #1b1628;
+
+  --cyan: #2fe6ff;
+  --cyan-dim: #17a8bf;
+  --magenta: #ff2f7e;
+  --magenta-dim: #b81f5c;
+  --gold: #ffb020;
+  --violet: #8a3ffc;
+  --coral: #ff6a45;
+  --blue: #3aa0ff;
+  --green: #5ad48f;
+
+  --text-primary: #f5f2fb;
+  --text-mid: #b6b0cc;
+  --text-mute: #7c7690;
+  --border-soft: rgba(255, 255, 255, 0.08);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --border-glow: rgba(47, 230, 255, 0.35);
+
+  --font-display: 'Baloo 2', system-ui, sans-serif;
+  --font-tag: 'Rajdhani', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --shadow-card: 0 12px 34px -14px rgba(0, 0, 0, 0.7);
+  --shadow-pop: 0 20px 50px -16px rgba(0, 0, 0, 0.85);
+  --glow-cyan: 0 0 24px -4px rgba(47, 230, 255, 0.45);
+  --glow-magenta: 0 0 24px -4px rgba(255, 47, 126, 0.45);
+  --glow-gold: 0 0 24px -4px rgba(255, 176, 32, 0.4);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--text-primary);
+  background:
+    radial-gradient(ellipse 900px 500px at 15% -5%, rgba(138, 63, 252, 0.16), transparent 60%),
+    radial-gradient(ellipse 900px 600px at 90% 10%, rgba(47, 230, 255, 0.10), transparent 55%),
+    var(--void);
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+h1, h2, h3, h4 { font-family: var(--font-display); margin: 0; line-height: 1.15; }
+p { margin: 0; line-height: 1.65; color: var(--text-mid); }
+ul, ol { margin: 0; padding: 0; }
+button { font-family: var(--font-body); cursor: pointer; }
+
+.muted-note { color: var(--text-mute); font-size: 0.9rem; }
+
+/* ---------- Header ---------- */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  background: rgba(5, 4, 10, 0.85);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.header-inner {
+  max-width: 1180px; margin: 0 auto; padding: 0.85rem 1.25rem;
+  display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+}
+.brand {
+  display: flex; align-items: center; gap: 10px;
+  font-family: var(--font-display); font-weight: 700; font-size: 1.15rem; color: #fff;
+  letter-spacing: 0.01em;
+}
+.brand-disc {
+  width: 26px; height: 26px; border-radius: 50%;
+  background: conic-gradient(from 0deg, var(--cyan), var(--magenta), var(--gold), var(--cyan));
+  box-shadow: 0 0 18px rgba(47, 230, 255, 0.7);
+  animation: spin 4s linear infinite;
+}
+.main-nav { display: flex; gap: 1.5rem; }
+.main-nav a {
+  color: var(--text-mid); font-family: var(--font-tag); font-weight: 600;
+  font-size: 0.95rem; letter-spacing: 0.03em; padding: 0.4rem 0; position: relative;
+  transition: color 0.2s ease;
+}
+.main-nav a::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  box-shadow: 0 0 8px rgba(47, 230, 255, 0.8);
+  transition: width 0.25s ease;
+}
+.main-nav a:hover { color: #fff; }
+.main-nav a:hover::after { width: 100%; }
+
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+.icon-btn {
+  background: rgba(255,255,255,0.04); border: 1px solid var(--border-soft);
+  color: #fff; border-radius: 999px; padding: 0.45rem 0.9rem;
+  display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem;
+  font-family: var(--font-tag); font-weight: 600; transition: all 0.2s ease;
+}
+.icon-btn:hover { background: rgba(255,255,255,0.09); border-color: var(--border-strong); }
+.icon-btn[aria-pressed="true"] {
+  background: linear-gradient(90deg, var(--cyan), var(--magenta));
+  border-color: transparent; color: #05040a; box-shadow: var(--glow-cyan);
+}
+.sound-label { display: none; }
+
+.menu-btn { display: none; flex-direction: column; gap: 4px; padding: 0.55rem 0.6rem; }
+.menu-btn span { width: 18px; height: 2px; background: #fff; border-radius: 2px; }
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative; overflow: hidden;
+  background:
+    radial-gradient(ellipse 700px 420px at 80% 0%, rgba(255, 47, 126, 0.16), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 10% 100%, rgba(47, 230, 255, 0.14), transparent 60%),
+    linear-gradient(180deg, var(--bg-0), var(--void));
+  padding: 5rem 1.25rem 5.5rem;
+  color: #fff;
+  border-bottom: 1px solid var(--border-soft);
+}
+.hero::before {
+  content: "";
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+  background-size: 42px 42px;
+  mask-image: radial-gradient(ellipse 80% 60% at 50% 30%, black, transparent 75%);
+  pointer-events: none;
+}
+.hero-inner { max-width: 640px; margin: 0 auto; position: relative; z-index: 2; text-align: center; }
+.eyebrow {
+  font-family: var(--font-tag); text-transform: uppercase; letter-spacing: 0.2em;
+  font-size: 0.8rem; color: var(--cyan); margin-bottom: 0.9rem; font-weight: 700;
+  text-shadow: 0 0 16px rgba(47, 230, 255, 0.6);
+}
+.hero h1 {
+  font-size: clamp(2.1rem, 6.5vw, 3.4rem); font-weight: 800; margin-bottom: 1.2rem;
+  text-shadow: 0 0 40px rgba(138, 63, 252, 0.35);
+}
+.hero-sub { color: var(--text-mid); font-size: 1.05rem; max-width: 540px; margin: 0 auto 2.2rem; }
+.hero-cta { display: flex; gap: 0.85rem; justify-content: center; flex-wrap: wrap; }
+
+.btn {
+  font-family: var(--font-tag); font-weight: 700; font-size: 0.95rem;
+  padding: 0.85rem 1.6rem; border-radius: 999px; border: none; letter-spacing: 0.02em;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+.btn:active { transform: scale(0.97); }
+.btn-primary {
+  background: linear-gradient(90deg, var(--cyan), var(--blue));
+  color: #05040a; box-shadow: 0 0 30px -6px rgba(47, 230, 255, 0.65);
+}
+.btn-primary:hover { box-shadow: 0 0 40px -4px rgba(47, 230, 255, 0.85); transform: translateY(-1px); }
+.btn-ghost {
+  background: rgba(255,255,255,0.03); color: #fff; border: 1px solid var(--border-strong);
+}
+.btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: var(--magenta); box-shadow: var(--glow-magenta); }
+
+.hero-visual { position: absolute; inset: 0; z-index: 1; pointer-events: none; }
+.disc {
+  position: absolute; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem; opacity: 0.9; animation: float 6s ease-in-out infinite, spin 8s linear infinite;
+  box-shadow: 0 0 50px -4px currentColor, inset 0 0 20px rgba(0,0,0,0.4);
+}
+.disc-a { width: 110px; height: 110px; top: 8%; left: 6%; background: radial-gradient(circle at 35% 30%, var(--gold), #5c3a08); color: var(--gold); animation-duration: 7s, 6s; }
+.disc-b { width: 150px; height: 150px; bottom: 6%; right: 8%; background: radial-gradient(circle at 35% 30%, var(--coral), #3f1206); color: var(--coral); animation-duration: 9s, 10s; animation-delay: 0.6s; }
+.disc-c { width: 80px; height: 80px; top: 55%; left: 14%; background: radial-gradient(circle at 35% 30%, var(--blue), #072038); color: var(--blue); animation-duration: 5.5s, 7s; animation-delay: 1.2s; }
+.core-glyph { filter: drop-shadow(0 0 8px rgba(0,0,0,0.6)); }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-16px); } }
+
+/* ---------- Sections ---------- */
+.section { padding: 4.5rem 1.25rem; position: relative; }
+.section.alt { background: linear-gradient(180deg, var(--bg-1), var(--bg-0)); border-top: 1px solid var(--border-soft); border-bottom: 1px solid var(--border-soft); }
+.section-inner { max-width: 1100px; margin: 0 auto; }
+.section-inner.narrow { max-width: 760px; }
+.section-tag {
+  display: inline-block; font-family: var(--font-tag); font-weight: 700; font-size: 0.8rem;
+  letter-spacing: 0.14em; text-transform: uppercase; color: var(--magenta);
+  background: rgba(255, 47, 126, 0.1); border: 1px solid rgba(255, 47, 126, 0.25);
+  padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 1rem;
+}
+.section-title { font-size: clamp(1.7rem, 4.2vw, 2.4rem); font-weight: 800; margin-bottom: 0.8rem; color: #fff; }
+.section-lead { max-width: 640px; margin-bottom: 2.4rem; font-size: 1.05rem; }
+.sub-heading { font-size: 1.3rem; margin: 2.6rem 0 1.1rem; font-weight: 700; color: #fff; }
+
+/* ---------- Cards ---------- */
+.card-grid { display: grid; gap: 1.25rem; }
+.card-grid.two { grid-template-columns: repeat(2, 1fr); }
+.card-grid.three { grid-template-columns: repeat(3, 1fr); }
+.card-grid.four { grid-template-columns: repeat(4, 1fr); }
+.card-grid.tight { gap: 1rem; }
+
+.card {
+  background: linear-gradient(160deg, var(--card-bg-2), var(--card-bg));
+  border-radius: var(--radius-lg); padding: 1.6rem;
+  box-shadow: var(--shadow-card); border: 1px solid var(--border-soft);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.card:hover { transform: translateY(-5px); box-shadow: var(--shadow-pop), var(--glow-cyan); border-color: var(--border-glow); }
+.card.small { padding: 1.25rem; }
+.card-icon { font-size: 1.9rem; margin-bottom: 0.7rem; filter: drop-shadow(0 0 10px rgba(47,230,255,0.35)); }
+.card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; color: #fff; }
+.card h4 { font-size: 1.05rem; margin-bottom: 0.4rem; color: #fff; }
+.card p { font-size: 0.95rem; }
+.card-link {
+  display: inline-block; margin-top: 0.9rem; font-family: var(--font-tag); font-weight: 700;
+  font-size: 0.9rem; color: var(--cyan);
+}
+
+/* ---------- Two column / lists ---------- */
+.two-col { display: grid; grid-template-columns: 1.3fr 1fr; gap: 2rem; align-items: start; margin-bottom: 1rem; }
+.two-col.reverse { grid-template-columns: 1fr 1.3fr; }
+.two-col.reverse .infobox { order: 1; }
+.two-col.reverse > div:last-child { order: 2; }
+.two-col h3 { color: #fff; }
+
+.step-list { list-style: none; counter-reset: step; display: flex; flex-direction: column; gap: 0.9rem; }
+.step-list li { counter-increment: step; padding-left: 2.5rem; position: relative; color: var(--text-mid); font-size: 0.98rem; }
+.step-list li strong { color: #fff; }
+.step-list li::before {
+  content: counter(step); position: absolute; left: 0; top: -2px; width: 1.8rem; height: 1.8rem;
+  border-radius: 50%; background: linear-gradient(135deg, var(--cyan), var(--blue)); color: #05040a;
+  font-family: var(--font-tag); font-weight: 700; display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; box-shadow: 0 0 14px -2px rgba(47, 230, 255, 0.6);
+}
+.check-list { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+.check-list li { padding-left: 1.7rem; position: relative; color: var(--text-mid); font-size: 0.98rem; }
+.check-list li strong { color: #fff; }
+.check-list li::before {
+  content: "✓"; position: absolute; left: 0; top: 1px; color: var(--green); font-weight: 700;
+  text-shadow: 0 0 8px rgba(90, 212, 143, 0.7);
+}
+
+.infobox {
+  background: linear-gradient(155deg, #1c1030, #0d0818);
+  border: 1px solid rgba(138, 63, 252, 0.3);
+  color: #fff; border-radius: var(--radius-lg); padding: 1.6rem;
+  box-shadow: 0 0 30px -12px rgba(138, 63, 252, 0.5);
+}
+.infobox h4 { color: var(--gold); margin-bottom: 0.5rem; text-shadow: 0 0 12px rgba(255, 176, 32, 0.5); }
+.infobox p { color: rgba(255,255,255,0.75); font-size: 0.95rem; }
+
+/* ---------- Type chart ---------- */
+.type-chart { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.9rem; }
+.type-tile {
+  border-radius: var(--radius-md); padding: 1.1rem; color: #fff; position: relative; overflow: hidden;
+  box-shadow: var(--shadow-card); border: 1px solid rgba(255,255,255,0.12);
+}
+.type-tile::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(255,255,255,0.14), transparent 60%);
+  pointer-events: none;
+}
+.type-tile .t-name { font-family: var(--font-display); font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 0.4rem; }
+.type-tile .t-rel { font-size: 0.8rem; margin-top: 0.6rem; color: rgba(255,255,255,0.9); }
+.type-tile .t-rel b { color: #fff; }
+
+/* ---------- Parts diagram ---------- */
+.parts-diagram { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+.part-tile {
+  background: var(--card-bg); border: 1px solid var(--border-soft); border-radius: var(--radius-md);
+  padding: 1.2rem; text-align: center; box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.part-tile:hover { border-color: var(--border-glow); box-shadow: var(--shadow-card), var(--glow-cyan); }
+.part-tile .p-icon { font-size: 1.7rem; margin-bottom: 0.5rem; }
+.part-tile .p-name { font-family: var(--font-tag); font-weight: 700; margin-bottom: 0.3rem; color: #fff; }
+.part-tile .p-desc { font-size: 0.85rem; color: var(--text-mute); }
+
+/* ---------- Accordion ---------- */
+.accordion { display: flex; flex-direction: column; gap: 0.7rem; }
+.acc-item { background: var(--card-bg); border-radius: var(--radius-md); border: 1px solid var(--border-soft); overflow: hidden; transition: border-color 0.2s ease; }
+.acc-item.open { border-color: rgba(255, 47, 126, 0.4); }
+.acc-trigger {
+  width: 100%; background: none; border: none; padding: 1.15rem 1.3rem; text-align: left;
+  display: flex; justify-content: space-between; align-items: center; font-family: var(--font-tag);
+  font-weight: 700; font-size: 1rem; color: #fff;
+}
+.acc-trigger .chev { transition: transform 0.2s ease; color: var(--magenta); }
+.acc-item.open .acc-trigger .chev { transform: rotate(180deg); }
+.acc-panel { max-height: 0; overflow: hidden; transition: max-height 0.25s ease; }
+.acc-panel-inner { padding: 0 1.3rem 1.15rem; font-size: 0.95rem; color: var(--text-mid); }
+
+/* ---------- Creature / blader / gear cards ---------- */
+.wyld-card { text-align: center; }
+.wyld-avatar {
+  width: 66px; height: 66px; border-radius: 50%; margin: 0 auto 0.8rem;
+  display: flex; align-items: center; justify-content: center; font-size: 1.8rem; color: #fff;
+  box-shadow: 0 0 24px -4px currentColor, inset 0 0 12px rgba(0,0,0,0.35);
+}
+.wyld-type { font-size: 0.75rem; font-family: var(--font-tag); font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; margin-top: 0.3rem; }
+
+.blader-card { display: flex; gap: 1rem; align-items: flex-start; }
+.blader-avatar {
+  width: 58px; height: 58px; border-radius: 16px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.55rem; color: #fff;
+  box-shadow: 0 0 20px -4px currentColor;
+}
+.blader-info h4 { margin-bottom: 0.2rem; }
+.blader-role { font-size: 0.8rem; color: var(--magenta); font-family: var(--font-tag); font-weight: 700; margin-bottom: 0.5rem; }
+
+.gear-card { text-align: left; }
+.gear-tag {
+  display: inline-block; font-size: 0.7rem; font-family: var(--font-tag); font-weight: 700;
+  padding: 0.2rem 0.65rem; border-radius: 999px; background: rgba(255,176,32,0.1);
+  border: 1px solid rgba(255,176,32,0.3); color: var(--gold); margin-bottom: 0.6rem;
+}
+
+/* ---------- Compare table ---------- */
+.table-wrap { overflow-x: auto; border-radius: var(--radius-lg); box-shadow: var(--shadow-card); border: 1px solid var(--border-soft); }
+.compare-table { width: 100%; border-collapse: collapse; background: var(--card-bg); min-width: 640px; }
+.compare-table th, .compare-table td { padding: 0.95rem 1.15rem; text-align: left; font-size: 0.92rem; border-bottom: 1px solid var(--border-soft); }
+.compare-table thead th {
+  font-family: var(--font-tag); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 0.06em;
+  color: var(--cyan); background: var(--bg-1);
+}
+.compare-table tbody td { color: var(--text-mid); }
+.compare-table tbody td:first-child { font-weight: 600; color: #fff; }
+.compare-table tbody tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+.compare-table tbody tr:hover { background: rgba(47, 230, 255, 0.05); }
+
+/* ---------- Quiz ---------- */
+.quiz-app {
+  background: linear-gradient(160deg, var(--card-bg-2), var(--card-bg));
+  border-radius: var(--radius-lg); padding: 1.9rem; box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-soft);
+}
+.quiz-progress { height: 6px; background: rgba(255,255,255,0.06); border-radius: 999px; overflow: hidden; margin-bottom: 1.5rem; }
+.quiz-progress-bar { height: 100%; background: linear-gradient(90deg, var(--cyan), var(--magenta)); width: 0%; transition: width 0.3s ease; box-shadow: 0 0 12px rgba(47,230,255,0.6); }
+.quiz-q-count { font-family: var(--font-tag); font-size: 0.8rem; color: var(--text-mute); margin-bottom: 0.4rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; }
+.quiz-question { font-size: 1.25rem; font-weight: 700; margin-bottom: 1.3rem; font-family: var(--font-display); color: #fff; }
+.quiz-options { display: flex; flex-direction: column; gap: 0.7rem; }
+.quiz-option {
+  text-align: left; padding: 0.95rem 1.15rem; border-radius: var(--radius-md); border: 1.5px solid var(--border-soft);
+  background: rgba(255,255,255,0.02); font-size: 0.98rem; color: var(--text-primary);
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+.quiz-option:hover { border-color: var(--cyan); background: rgba(47, 230, 255, 0.06); box-shadow: var(--glow-cyan); }
+.quiz-result { text-align: center; }
+.quiz-result .r-icon { font-size: 2.7rem; margin-bottom: 0.8rem; filter: drop-shadow(0 0 16px rgba(255,47,126,0.5)); }
+.quiz-result h3 { font-size: 1.45rem; margin-bottom: 0.6rem; color: #fff; }
+.quiz-result p { max-width: 460px; margin: 0 auto 1.4rem; }
+.quiz-restart { margin-top: 0.5rem; }
+
+/* ---------- Poll ---------- */
+.poll-app {
+  background: linear-gradient(160deg, var(--card-bg-2), var(--card-bg));
+  border-radius: var(--radius-lg); padding: 1.9rem; box-shadow: var(--shadow-card);
+  border: 1px solid var(--border-soft);
+}
+.poll-option { margin-bottom: 1rem; }
+.poll-option-btn {
+  width: 100%; text-align: left; padding: 0.9rem 1.15rem; border-radius: var(--radius-md);
+  border: 1.5px solid var(--border-soft); background: rgba(255,255,255,0.02); font-size: 0.98rem; color: var(--text-primary);
+  display: flex; justify-content: space-between; align-items: center; gap: 1rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.poll-option-btn:hover { border-color: var(--magenta); box-shadow: var(--glow-magenta); }
+.poll-bar-track { height: 8px; border-radius: 999px; background: rgba(255,255,255,0.06); margin-top: 0.5rem; overflow: hidden; }
+.poll-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--coral)); width: 0%; transition: width 0.4s ease; box-shadow: 0 0 10px rgba(255,176,32,0.6); }
+.poll-pct { font-family: var(--font-tag); font-weight: 700; font-size: 0.85rem; color: var(--text-mute); }
+.poll-voted-note { font-size: 0.85rem; color: var(--text-mute); margin-top: 0.6rem; }
+
+/* ---------- Toast ---------- */
+.toast {
+  position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%) translateY(20px);
+  background: linear-gradient(135deg, var(--card-bg-2), var(--card-bg));
+  border: 1px solid var(--border-glow);
+  color: #fff; padding: 0.7rem 1.2rem; border-radius: 999px;
+  font-family: var(--font-tag); font-weight: 600; font-size: 0.9rem; opacity: 0; pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease; z-index: 200; box-shadow: var(--shadow-pop), var(--glow-cyan);
+}
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---------- Footer ---------- */
+.site-footer { background: var(--void); color: var(--text-mute); padding: 2.6rem 1.25rem; border-top: 1px solid var(--border-soft); }
+.footer-inner { max-width: 1100px; margin: 0 auto; }
+.footer-inner p { color: var(--text-mute); font-size: 0.88rem; margin-bottom: 0.5rem; }
+.footer-inner strong { color: var(--text-mid); }
+
+/* ---------- Responsive ---------- */
+@media (max-width: 880px) {
+  .card-grid.three { grid-template-columns: repeat(2, 1fr); }
+  .card-grid.four { grid-template-columns: repeat(2, 1fr); }
+  .two-col, .two-col.reverse { grid-template-columns: 1fr; }
+  .two-col.reverse .infobox { order: 2; }
+  .two-col.reverse > div:last-child { order: 1; }
+  .type-chart { grid-template-columns: repeat(2, 1fr); }
+  .parts-diagram { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 640px) {
+  .main-nav {
+    position: fixed; top: 62px; left: 0; right: 0; background: var(--void);
+    flex-direction: column; padding: 1rem 1.25rem; gap: 0; max-height: 0; overflow: hidden;
+    transition: max-height 0.25s ease; border-bottom: 1px solid var(--border-soft);
+  }
+  .main-nav.open { max-height: 400px; }
+  .main-nav a { padding: 0.85rem 0; border-bottom: 1px solid var(--border-soft); }
+  .menu-btn { display: flex; }
+  .sound-label { display: none; }
+  .card-grid.two, .card-grid.three, .card-grid.four { grid-template-columns: 1fr; }
+  .type-chart, .parts-diagram { grid-template-columns: 1fr; }
+  .blader-card { flex-direction: column; align-items: flex-start; }
+  .hero { padding: 3.5rem 1.1rem 4rem; }
+  .disc-a { width: 70px; height: 70px; }
+  .disc-b { width: 100px; height: 100px; }
+  .disc-c { width: 54px; height: 54px; }
+}
+
+@media (min-width: 641px) {
+  .sound-label { display: inline; }
+}
+
+</style>
+</head>
+<body>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-disc" aria-hidden="true"></span>
+      Arena Codex
+    </a>
+
+    <nav id="main-nav" class="main-nav">
+      <a href="#collect101">Collect 101</a>
+      <a href="#spin101">Spin 101</a>
+      <a href="#genres101">Genres 101</a>
+      <a href="#lore">Lore</a>
+      <a href="#guides">Guides</a>
+      <a href="#compare">Compare</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="sound-toggle" class="icon-btn" type="button" aria-pressed="false">
+        <span class="sound-icon">🔈</span>
+        <span class="sound-label">Sound off</span>
+      </button>
+      <button id="nav-toggle" class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">an unofficial fan companion</p>
+      <h1>Collect. Spin. Battle.<br>Every arena, one codex.</h1>
+      <p class="hero-sub">
+        A beginner-friendly guide to creature-collecting battle games, spinning-top duels,
+        and the anime storytelling that powers them both — explained with original
+        creatures, bladers, and worlds so you can learn the ideas without needing to
+        already know the franchises.
+      </p>
+      <div class="hero-cta">
+        <a href="#collect101" class="btn btn-primary">Start with the basics</a>
+        <a href="#quiz" class="btn btn-ghost">Take the battle-style quiz</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="disc disc-a"><i class="core-glyph">⚡</i></div>
+      <div class="disc disc-b"><i class="core-glyph">🔥</i></div>
+      <div class="disc disc-c"><i class="core-glyph">💧</i></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="section-inner">
+      <h2 class="section-title">Three worlds, one guide</h2>
+      <p class="section-lead">Jump into whichever corner of battle-anime fandom you're curious about.</p>
+      <div class="card-grid three">
+        <article class="card">
+          <div class="card-icon">🧬</div>
+          <h3>Collect &amp; Battle 101</h3>
+          <p>How creature-collecting games work: types, teams, turn-based duels, and why building
+          a balanced squad matters more than raw power.</p>
+          <a href="#collect101" class="card-link">Read the basics →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">🌀</div>
+          <h3>Spin Duels 101</h3>
+          <p>How spinning-top battles work: launch power, stadium hazards, and the four disc
+          styles that decide whether you out-hit or out-last your rival.</p>
+          <a href="#spin101" class="card-link">Read the basics →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">🎬</div>
+          <h3>Anime Genres 101</h3>
+          <p>The storytelling DNA behind battle anime — shonen grit, fantasy myth-building,
+          and sci-fi speculation — and how each genre shapes its fights.</p>
+          <a href="#genres101" class="card-link">Read the basics →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECT 101 -->
+  <section class="section alt" id="collect101">
+    <div class="section-inner">
+      <span class="section-tag">Collect &amp; Battle 101</span>
+      <h2 class="section-title">Building a team, one type at a time</h2>
+      <p class="section-lead">
+        In creature-collecting games, you don't play as one fixed character — you recruit a
+        roster of creatures, each with an elemental <strong>type</strong>, then send them into
+        turn-based duels. Here's the loop, illustrated with an original example world we call
+        the <strong>Rift Isles</strong>.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h3>The core loop</h3>
+          <ol class="step-list">
+            <li><strong>Recruit</strong> — meet wild creatures (here, "Wyldkin") and bond with them instead of buying or building them.</li>
+            <li><strong>Train</strong> — battles and bonding raise stats and can trigger evolution into a stronger stage.</li>
+            <li><strong>Duel</strong> — trainers send one creature at a time into turn-based exchanges of moves.</li>
+            <li><strong>Type-match</strong> — every move has a type, and each type is strong against one type and weak against another.</li>
+          </ol>
+        </div>
+        <div class="infobox">
+          <h4>Why types matter</h4>
+          <p>A type chart turns raw stats into a strategy puzzle: a slower, weaker creature can still
+          win if its type counters the opponent's. Reading the matchup before you attack is the whole game.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Original type chart — Rift Isles set</h3>
+      <p class="muted-note">Eight original types, each strong against one and weak against one, to keep matchups easy to read at a glance.</p>
+      <div class="type-chart" id="type-chart"></div>
+    </div>
+  </section>
+
+  <!-- SPIN 101 -->
+  <section class="section" id="spin101">
+    <div class="section-inner">
+      <span class="section-tag">Spin Duels 101</span>
+      <h2 class="section-title">Launch, clash, out-spin</h2>
+      <p class="section-lead">
+        Spin-duel games swap teams of creatures for a single customizable top — here we'll call
+        it a <strong>Spin Core</strong> — launched into a stadium arena. Whoever keeps spinning
+        (or knocks the other out of the ring) wins.
+      </p>
+
+      <div class="two-col reverse">
+        <div class="infobox">
+          <h4>Match length</h4>
+          <p>Most duels resolve in under a minute. That speed is the genre's signature: prep is
+          slow and thoughtful (build your Core), but the duel itself is fast and visual.</p>
+        </div>
+        <div>
+          <h3>Four driver styles</h3>
+          <ul class="check-list">
+            <li><strong>Attack</strong> — sacrifices spin time for hard-hitting collisions.</li>
+            <li><strong>Defense</strong> — absorbs hits and holds the center of the stadium.</li>
+            <li><strong>Stamina</strong> — wide, steady spin built to outlast everyone else.</li>
+            <li><strong>Balance</strong> — no clear weakness, but no standout strength either.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Anatomy of a Spin Core</h3>
+      <div class="parts-diagram" id="parts-diagram"></div>
+
+      <h3 class="sub-heading">Stadium hazards</h3>
+      <div class="card-grid three tight">
+        <article class="card small">
+          <div class="card-icon">🌪️</div>
+          <h4>Center vortex</h4>
+          <p>Pulls both discs inward, forcing early contact and rewarding Attack drivers.</p>
+        </article>
+        <article class="card small">
+          <div class="card-icon">🧱</div>
+          <h4>Ring walls</h4>
+          <p>Angled barriers that redirect knock-outs — or save a disc that's drifting toward the edge.</p>
+        </article>
+        <article class="card small">
+          <div class="card-icon">🕳️</div>
+          <h4>Pocket dips</h4>
+          <p>Sunken sections that slow a disc's spin decay, favoring Stamina and Defense builds.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENRES 101 -->
+  <section class="section alt" id="genres101">
+    <div class="section-inner">
+      <span class="section-tag">Anime Genres 101</span>
+      <h2 class="section-title">The storytelling behind the fights</h2>
+      <p class="section-lead">
+        Both battle formats above borrow their emotional beats from anime storytelling
+        traditions. Knowing the genre tropes makes it easier to spot why a fight is written
+        the way it is.
+      </p>
+      <div class="card-grid three">
+        <article class="card">
+          <div class="card-icon">🔥</div>
+          <h3>Shonen</h3>
+          <p>Rivalry, training arcs, and hard-won power-ups. The fight matters less than what it
+          proves about the character's growth and bond with their friends.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🗡️</div>
+          <h3>Fantasy</h3>
+          <p>Myth-scale stakes, chosen-one arcs, and magic systems with rules. Battles often
+          reveal ancient history or a prophecy the hero didn't know they were part of.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🛰️</div>
+          <h3>Sci-fi</h3>
+          <p>Technology as both tool and threat. Fights explore what a new power costs its user,
+          and often ask whether "stronger" and "better" are the same thing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LORE -->
+  <section class="section" id="lore">
+    <div class="section-inner">
+      <span class="section-tag">Lore &amp; universe</span>
+      <h2 class="section-title">Glossary of common tropes</h2>
+      <p class="section-lead">Terms you'll see across almost every battle-anime story, regardless of genre.</p>
+      <div class="accordion" id="trope-accordion"></div>
+    </div>
+  </section>
+
+  <!-- GUIDES -->
+  <section class="section alt" id="guides">
+    <div class="section-inner">
+      <span class="section-tag">Character &amp; item guides</span>
+      <h2 class="section-title">Meet the Rift Isles cast</h2>
+      <p class="section-lead">Original creatures, bladers, and gear used throughout this guide to illustrate the concepts above.</p>
+
+      <h3 class="sub-heading">Wyldkin</h3>
+      <div class="card-grid four" id="wyldkin-grid"></div>
+
+      <h3 class="sub-heading">Bladers</h3>
+      <div class="card-grid two" id="blader-grid"></div>
+
+      <h3 class="sub-heading">Gear</h3>
+      <div class="card-grid three tight" id="gear-grid"></div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="section" id="compare">
+    <div class="section-inner">
+      <span class="section-tag">Comparison</span>
+      <h2 class="section-title">How the battle styles stack up</h2>
+      <p class="section-lead">Same fandom energy, different rhythms. Here's how they compare across the things that matter most in a duel.</p>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Creature battles</th>
+              <th>Spin duels</th>
+              <th>General anime action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pacing</td>
+              <td>Slow, deliberate — plan each turn</td>
+              <td>Fast — resolved in under a minute</td>
+              <td>Variable, paced for drama</td>
+            </tr>
+            <tr>
+              <td>Core strategy</td>
+              <td>Type matchups &amp; team building</td>
+              <td>Part combos &amp; launch timing</td>
+              <td>Character growth &amp; clever tactics</td>
+            </tr>
+            <tr>
+              <td>Progression</td>
+              <td>Training &amp; evolution over time</td>
+              <td>Customizing &amp; swapping parts</td>
+              <td>Training arcs &amp; power-ups</td>
+            </tr>
+            <tr>
+              <td>What decides the win</td>
+              <td>Best type + move choice</td>
+              <td>Physics + build tuning</td>
+              <td>Willpower, bonds, cleverness</td>
+            </tr>
+            <tr>
+              <td>Storytelling focus</td>
+              <td>Companionship with your team</td>
+              <td>Rivalry and self-improvement</td>
+              <td>Whatever the genre emphasizes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section alt" id="quiz">
+    <div class="section-inner narrow">
+      <span class="section-tag">Interactive</span>
+      <h2 class="section-title">Which battle style fits you?</h2>
+      <p class="section-lead">Answer five quick questions — no right answers, just vibes.</p>
+      <div id="quiz-app" class="quiz-app"></div>
+    </div>
+  </section>
+
+  <!-- POLL -->
+  <section class="section" id="poll">
+    <div class="section-inner narrow">
+      <span class="section-tag">Poll</span>
+      <h2 class="section-title">What should we cover next?</h2>
+      <p class="section-lead">Vote once — results update live and are saved on this device.</p>
+      <div id="poll-app" class="poll-app"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p><strong>Arena Codex</strong> is an unofficial, fan-made educational guide. All creatures,
+    bladers, and worlds shown here are original and not affiliated with or representative of
+    any specific franchise.</p>
+    <p class="muted-note">Sound effects and music are original, synthesized in-browser.</p>
+  </div>
+</footer>
+
+<script>
+// Original, in-browser synthesized audio. No external or copyrighted
+// audio files are used — everything here is generated with oscillators.
+
+const ArenaAudio = (() => {
+  let ctx = null;
+  let masterGain = null;
+  let musicGain = null;
+  let sfxGain = null;
+  let musicTimer = null;
+  let musicStep = 0;
+  let enabled = false;
+
+  const scale = [261.63, 293.66, 329.63, 392.0, 440.0, 523.25, 587.33, 659.25]; // C major-ish, bright and playful
+  const bassNotes = [130.81, 130.81, 174.61, 196.0];
+
+  function ensureContext() {
+    if (!ctx) {
+      ctx = new (window.AudioContext || window.webkitAudioContext)();
+      masterGain = ctx.createGain();
+      masterGain.gain.value = 0.5;
+      masterGain.connect(ctx.destination);
+
+      musicGain = ctx.createGain();
+      musicGain.gain.value = 0.16;
+      musicGain.connect(masterGain);
+
+      sfxGain = ctx.createGain();
+      sfxGain.gain.value = 0.35;
+      sfxGain.connect(masterGain);
+    }
+  }
+
+  function blip(freq, duration, type, gainNode, startOffset, peak) {
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = type || "square";
+    osc.frequency.value = freq;
+    const t0 = ctx.currentTime + (startOffset || 0);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(peak || 0.5, t0 + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + duration);
+    osc.connect(g);
+    g.connect(gainNode);
+    osc.start(t0);
+    osc.stop(t0 + duration + 0.02);
+  }
+
+  function playMusicStep() {
+    if (!enabled) return;
+    const beat = musicStep % 8;
+    const note = scale[[0, 2, 4, 2, 5, 4, 2, 0][beat]];
+    blip(note, 0.18, "triangle", musicGain, 0, 0.5);
+    if (beat % 4 === 0) {
+      blip(bassNotes[Math.floor(musicStep / 8) % bassNotes.length], 0.35, "sine", musicGain, 0, 0.6);
+    }
+    musicStep++;
+  }
+
+  function startMusic() {
+    ensureContext();
+    if (ctx.state === "suspended") ctx.resume();
+    if (musicTimer) return;
+    musicStep = 0;
+    musicTimer = setInterval(playMusicStep, 220);
+  }
+
+  function stopMusic() {
+    if (musicTimer) {
+      clearInterval(musicTimer);
+      musicTimer = null;
+    }
+  }
+
+  function toggle() {
+    ensureContext();
+    if (ctx.state === "suspended") ctx.resume();
+    enabled = !enabled;
+    if (enabled) startMusic(); else stopMusic();
+    return enabled;
+  }
+
+  function sfxClick() {
+    ensureContext();
+    blip(880, 0.08, "square", sfxGain, 0, 0.3);
+  }
+
+  function sfxSelect() {
+    ensureContext();
+    blip(660, 0.07, "square", sfxGain, 0, 0.3);
+    blip(990, 0.09, "square", sfxGain, 0.06, 0.25);
+  }
+
+  function sfxSuccess() {
+    ensureContext();
+    [523.25, 659.25, 783.99].forEach((f, i) => blip(f, 0.16, "triangle", sfxGain, i * 0.09, 0.4));
+  }
+
+  function sfxWhoosh() {
+    ensureContext();
+    const osc = ctx.createOscillator();
+    const g = ctx.createGain();
+    osc.type = "sawtooth";
+    const t0 = ctx.currentTime;
+    osc.frequency.setValueAtTime(200, t0);
+    osc.frequency.exponentialRampToValueAtTime(900, t0 + 0.25);
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.05);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.3);
+    osc.connect(g);
+    g.connect(sfxGain);
+    osc.start(t0);
+    osc.stop(t0 + 0.32);
+  }
+
+  return { toggle, sfxClick, sfxSelect, sfxSuccess, sfxWhoosh, isEnabled: () => enabled };
+})();
+
+// All content below is original and fictional, created for this fan-guide site.
+// It is not affiliated with, and does not depict, any existing franchise.
+
+const TYPE_CHART = [
+  { name: "Ember", icon: "🔥", color: "#a8320f", strong: "Verdant", weak: "Tide" },
+  { name: "Tide", icon: "💧", color: "#0e5aa8", strong: "Ember", weak: "Volt" },
+  { name: "Volt", icon: "⚡", color: "#a8790c", strong: "Tide", weak: "Stone" },
+  { name: "Stone", icon: "🪨", color: "#5c4526", strong: "Volt", weak: "Gale" },
+  { name: "Gale", icon: "🌪️", color: "#166b5c", strong: "Stone", weak: "Frost" },
+  { name: "Frost", icon: "❄️", color: "#0e6ea8", strong: "Gale", weak: "Verdant" },
+  { name: "Verdant", icon: "🌿", color: "#1e7a4d", strong: "Frost", weak: "Umbra" },
+  { name: "Umbra", icon: "🌙", color: "#4a2e9e", strong: "Verdant", weak: "Ember" }
+];
+
+const SPIN_PARTS = [
+  { icon: "🧿", name: "Core", desc: "Sets base weight and top-line stats." },
+  { icon: "⭕", name: "Ring", desc: "Leans the build toward attack or defense." },
+  { icon: "🌀", name: "Driver", desc: "Attack, Defense, Stamina, or Balance spin style." },
+  { icon: "🔷", name: "Fusion chip", desc: "Slot for a bonded Wyldkin's special ability." }
+];
+
+const TROPES = [
+  {
+    title: "The rival",
+    body: "A recurring opponent whose growth mirrors the hero's own. Rivals push the protagonist to improve and often become allies later in the story."
+  },
+  {
+    title: "The training arc",
+    body: "A pause in the plot dedicated to visible improvement — new techniques, harder discipline, or a mentor teaching a lesson the hero wasn't ready for before."
+  },
+  {
+    title: "The power-up reveal",
+    body: "A hidden ability or transformation unlocked at the story's most dramatic moment, usually tied to an emotional breakthrough rather than just training."
+  },
+  {
+    title: "The chosen one",
+    body: "A protagonist marked by prophecy, bloodline, or accident as uniquely capable of facing the story's central threat — common in fantasy-leaning arcs."
+  },
+  {
+    title: "The found family",
+    body: "A team that starts as strangers or rivals and becomes each other's found family, often the emotional core the final battle is fought to protect."
+  },
+  {
+    title: "The cost of power",
+    body: "Especially common in sci-fi framing: new strength comes with a price — physical, ethical, or personal — that the story makes the hero reckon with."
+  }
+];
+
+const WYLDKIN = [
+  { name: "Flarion", type: "Ember", color: "#c23f13", icon: "🔥", blurb: "A quick-tempered Wyldkin that channels heat into short, explosive bursts of speed." },
+  { name: "Nerelle", type: "Tide", color: "#1467c2", icon: "💧", blurb: "Calm and defensive, Nerelle wears down opponents with patience rather than power." },
+  { name: "Gustrix", type: "Gale", color: "#1c8a76", icon: "🌪️", blurb: "Rarely seen standing still — Gustrix's whole strategy is outrunning the problem." },
+  { name: "Terroc", type: "Stone", color: "#7a5c33", icon: "🪨", blurb: "Slow to move, nearly impossible to knock down. Terroc wins fights of attrition." }
+];
+
+const BLADERS = [
+  {
+    name: "Kaiden Voss",
+    role: "Emberclan — Attack specialist",
+    color: "#c23f13",
+    icon: "🔥",
+    blurb: "A shonen-coded rival archetype: loud, competitive, and always chasing the next opponent who can push him further."
+  },
+  {
+    name: "Wren Ashari",
+    role: "Starweavers — Balance specialist",
+    color: "#5934c2",
+    icon: "🌙",
+    blurb: "Fantasy-leaning and quietly strategic, Wren treats every duel as a puzzle to be solved before it's fought."
+  }
+];
+
+const GEAR = [
+  { tag: "Driver", name: "Vanta Driver", desc: "A Stamina-lean driver with a wide flat base built to resist knockouts." },
+  { tag: "Ring", name: "Aegis Ring", desc: "Heavy defensive ring that raises collision resistance at the cost of top speed." },
+  { tag: "Fusion chip", name: "Ember Surge chip", desc: "Channels a bonded Ember-type Wyldkin's burst ability into a one-time speed spike." }
+];
+
+const QUIZ_QUESTIONS = [
+  {
+    q: "A tough match is going against you. What's your first move?",
+    options: [
+      { text: "Recalculate the matchup — there's a smarter play here.", scores: { collect: 2, spin: 0, story: 0 } },
+      { text: "Go all-in on the riskiest, flashiest option.", scores: { collect: 0, spin: 2, story: 1 } },
+      { text: "Dig deep — this is a growth moment.", scores: { collect: 0, spin: 1, story: 2 } }
+    ]
+  },
+  {
+    q: "Pick a pre-battle ritual.",
+    options: [
+      { text: "Double-check your team's type coverage.", scores: { collect: 2, spin: 0, story: 0 } },
+      { text: "Fine-tune your gear one more time.", scores: { collect: 0, spin: 2, story: 0 } },
+      { text: "Hype yourself up with your team by your side.", scores: { collect: 0, spin: 0, story: 2 } }
+    ]
+  },
+  {
+    q: "What's most satisfying about winning?",
+    options: [
+      { text: "Watching a long-term plan finally pay off.", scores: { collect: 2, spin: 1, story: 0 } },
+      { text: "The split-second reflex play that clinched it.", scores: { collect: 0, spin: 2, story: 0 } },
+      { text: "Seeing how far you and your team have come.", scores: { collect: 0, spin: 0, story: 2 } }
+    ]
+  },
+  {
+    q: "Choose a strength to bring into a fight.",
+    options: [
+      { text: "Patience.", scores: { collect: 2, spin: 0, story: 1 } },
+      { text: "Speed.", scores: { collect: 0, spin: 2, story: 0 } },
+      { text: "Heart.", scores: { collect: 0, spin: 0, story: 2 } }
+    ]
+  },
+  {
+    q: "Pick your ideal arena.",
+    options: [
+      { text: "A quiet field where strategy can breathe.", scores: { collect: 2, spin: 0, story: 0 } },
+      { text: "A hazard-filled stadium with no room to relax.", scores: { collect: 0, spin: 2, story: 0 } },
+      { text: "Anywhere your whole team can be together.", scores: { collect: 0, spin: 0, story: 2 } }
+    ]
+  }
+];
+
+const QUIZ_RESULTS = {
+  collect: {
+    icon: "🧬",
+    title: "You're a Collect & Battle strategist",
+    body: "You think in matchups and long games. You'd rather out-plan an opponent than out-hype them — team building is where you shine."
+  },
+  spin: {
+    icon: "🌀",
+    title: "You're a Spin Duel competitor",
+    body: "Fast, decisive, and a little bit fearless. You want the fight resolved in seconds, not turns — tuning your build is half the fun."
+  },
+  story: {
+    icon: "🎬",
+    title: "You're here for the story",
+    body: "For you, the battle is a vehicle for growth and connection. You'll remember the bond, the rivalry, and the arc long after the final blow."
+  }
+};
+
+const POLL_OPTIONS = [
+  { id: "types", label: "A deep dive on type match-ups" },
+  { id: "stadiums", label: "Stadium hazard strategy guide" },
+  { id: "tropes", label: "More anime trope breakdowns" },
+  { id: "characters", label: "More original character profiles" }
+];
+
+document.addEventListener("DOMContentLoaded", () => {
+
+  /* ---------- Toast ---------- */
+  function showToast(msg) {
+    const toast = document.getElementById("toast");
+    toast.textContent = msg;
+    toast.classList.add("show");
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove("show"), 2200);
+  }
+
+  /* ---------- Sound toggle ---------- */
+  const soundBtn = document.getElementById("sound-toggle");
+  soundBtn.addEventListener("click", () => {
+    const on = ArenaAudio.toggle();
+    soundBtn.setAttribute("aria-pressed", on ? "true" : "false");
+    soundBtn.querySelector(".sound-icon").textContent = on ? "🔊" : "🔈";
+    soundBtn.querySelector(".sound-label").textContent = on ? "Sound on" : "Sound off";
+    showToast(on ? "Original chiptune music on" : "Sound muted");
+  });
+
+  /* ---------- Mobile nav ---------- */
+  const navToggle = document.getElementById("nav-toggle");
+  const mainNav = document.getElementById("main-nav");
+  navToggle.addEventListener("click", () => {
+    const open = mainNav.classList.toggle("open");
+    navToggle.setAttribute("aria-expanded", open ? "true" : "false");
+  });
+  mainNav.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", () => {
+      mainNav.classList.remove("open");
+      navToggle.setAttribute("aria-expanded", "false");
+      if (ArenaAudio.isEnabled()) ArenaAudio.sfxClick();
+    });
+  });
+
+  /* ---------- Type chart ---------- */
+  const typeChart = document.getElementById("type-chart");
+  typeChart.innerHTML = TYPE_CHART.map(t => `
+    <div class="type-tile" style="background:${t.color}">
+      <div class="t-name">${t.icon} ${t.name}</div>
+      <div class="t-rel">Strong vs <b>${t.strong}</b><br>Weak vs <b>${t.weak}</b></div>
+    </div>
+  `).join("");
+
+  /* ---------- Parts diagram ---------- */
+  const partsDiagram = document.getElementById("parts-diagram");
+  partsDiagram.innerHTML = SPIN_PARTS.map(p => `
+    <div class="part-tile">
+      <div class="p-icon">${p.icon}</div>
+      <div class="p-name">${p.name}</div>
+      <div class="p-desc">${p.desc}</div>
+    </div>
+  `).join("");
+
+  /* ---------- Trope accordion ---------- */
+  const accordion = document.getElementById("trope-accordion");
+  accordion.innerHTML = TROPES.map((t, i) => `
+    <div class="acc-item" data-idx="${i}">
+      <button class="acc-trigger" aria-expanded="false">
+        <span>${t.title}</span>
+        <span class="chev">▾</span>
+      </button>
+      <div class="acc-panel">
+        <div class="acc-panel-inner">${t.body}</div>
+      </div>
+    </div>
+  `).join("");
+
+  accordion.querySelectorAll(".acc-item").forEach(item => {
+    const trigger = item.querySelector(".acc-trigger");
+    const panel = item.querySelector(".acc-panel");
+    trigger.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      if (ArenaAudio.isEnabled()) ArenaAudio.sfxClick();
+      if (isOpen) {
+        item.classList.remove("open");
+        panel.style.maxHeight = null;
+        trigger.setAttribute("aria-expanded", "false");
+      } else {
+        item.classList.add("open");
+        panel.style.maxHeight = panel.scrollHeight + "px";
+        trigger.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+
+  /* ---------- Wyldkin / Blader / Gear grids ---------- */
+  const wyldkinGrid = document.getElementById("wyldkin-grid");
+  wyldkinGrid.innerHTML = WYLDKIN.map(w => `
+    <div class="card wyld-card small">
+      <div class="wyld-avatar" style="background:${w.color}">${w.icon}</div>
+      <h4>${w.name}</h4>
+      <div class="wyld-type" style="color:${w.color}">${w.type} type</div>
+      <p>${w.blurb}</p>
+    </div>
+  `).join("");
+
+  const bladerGrid = document.getElementById("blader-grid");
+  bladerGrid.innerHTML = BLADERS.map(b => `
+    <div class="card blader-card">
+      <div class="blader-avatar" style="background:${b.color}">${b.icon}</div>
+      <div class="blader-info">
+        <h4>${b.name}</h4>
+        <div class="blader-role">${b.role}</div>
+        <p>${b.blurb}</p>
+      </div>
+    </div>
+  `).join("");
+
+  const gearGrid = document.getElementById("gear-grid");
+  gearGrid.innerHTML = GEAR.map(g => `
+    <div class="card gear-card small">
+      <span class="gear-tag">${g.tag}</span>
+      <h4>${g.name}</h4>
+      <p>${g.desc}</p>
+    </div>
+  `).join("");
+
+  /* ---------- Quiz ---------- */
+  const quizApp = document.getElementById("quiz-app");
+  let quizIndex = 0;
+  const quizScores = { collect: 0, spin: 0, story: 0 };
+
+  function renderQuiz() {
+    if (quizIndex >= QUIZ_QUESTIONS.length) {
+      renderQuizResult();
+      return;
+    }
+    const q = QUIZ_QUESTIONS[quizIndex];
+    const pct = Math.round((quizIndex / QUIZ_QUESTIONS.length) * 100);
+    quizApp.innerHTML = `
+      <div class="quiz-progress"><div class="quiz-progress-bar" style="width:${pct}%"></div></div>
+      <div class="quiz-q-count">Question ${quizIndex + 1} of ${QUIZ_QUESTIONS.length}</div>
+      <div class="quiz-question">${q.q}</div>
+      <div class="quiz-options">
+        ${q.options.map((opt, i) => `<button class="quiz-option" data-i="${i}">${opt.text}</button>`).join("")}
+      </div>
+    `;
+    quizApp.querySelectorAll(".quiz-option").forEach(btn => {
+      btn.addEventListener("click", () => {
+        if (ArenaAudio.isEnabled()) ArenaAudio.sfxSelect();
+        const opt = q.options[parseInt(btn.dataset.i, 10)];
+        Object.keys(opt.scores).forEach(k => quizScores[k] += opt.scores[k]);
+        quizIndex++;
+        renderQuiz();
+      });
+    });
+  }
+
+  function renderQuizResult() {
+    const winner = Object.keys(quizScores).reduce((a, b) => quizScores[a] >= quizScores[b] ? a : b);
+    const r = QUIZ_RESULTS[winner];
+    if (ArenaAudio.isEnabled()) ArenaAudio.sfxSuccess();
+    quizApp.innerHTML = `
+      <div class="quiz-result">
+        <div class="r-icon">${r.icon}</div>
+        <h3>${r.title}</h3>
+        <p>${r.body}</p>
+        <button class="btn btn-primary quiz-restart">Retake the quiz</button>
+      </div>
+    `;
+    quizApp.querySelector(".quiz-restart").addEventListener("click", () => {
+      quizIndex = 0;
+      quizScores.collect = 0; quizScores.spin = 0; quizScores.story = 0;
+      if (ArenaAudio.isEnabled()) ArenaAudio.sfxWhoosh();
+      renderQuiz();
+    });
+  }
+
+  renderQuiz();
+
+  /* ---------- Poll ---------- */
+  const pollApp = document.getElementById("poll-app");
+  const POLL_KEY = "arena-codex-poll-v1";
+  const VOTE_KEY = "arena-codex-poll-voted-v1";
+
+  function getPollCounts() {
+    try {
+      const stored = JSON.parse(localStorage.getItem(POLL_KEY));
+      if (stored) return stored;
+    } catch (e) {}
+    const base = {};
+    POLL_OPTIONS.forEach(o => base[o.id] = Math.floor(Math.random() * 8) + 3);
+    localStorage.setItem(POLL_KEY, JSON.stringify(base));
+    return base;
+  }
+
+  function savePollCounts(counts) {
+    localStorage.setItem(POLL_KEY, JSON.stringify(counts));
+  }
+
+  function renderPoll() {
+    const counts = getPollCounts();
+    const voted = localStorage.getItem(VOTE_KEY);
+    const total = Object.values(counts).reduce((a, b) => a + b, 0) || 1;
+
+    pollApp.innerHTML = POLL_OPTIONS.map(o => {
+      const c = counts[o.id] || 0;
+      const pct = Math.round((c / total) * 100);
+      const isPicked = voted === o.id;
+      return `
+        <div class="poll-option">
+          <button class="poll-option-btn" data-id="${o.id}" ${voted ? "disabled" : ""}>
+            <span>${o.label}${isPicked ? " ✓" : ""}</span>
+            ${voted ? `<span class="poll-pct">${pct}%</span>` : ""}
+          </button>
+          ${voted ? `<div class="poll-bar-track"><div class="poll-bar-fill" style="width:${pct}%"></div></div>` : ""}
+        </div>
+      `;
+    }).join("") + (voted
+      ? `<p class="poll-voted-note">Thanks for voting — results are saved on this device.</p>`
+      : `<p class="poll-voted-note">Pick one to see live results.</p>`);
+
+    if (!voted) {
+      pollApp.querySelectorAll(".poll-option-btn").forEach(btn => {
+        btn.addEventListener("click", () => {
+          const id = btn.dataset.id;
+          const counts2 = getPollCounts();
+          counts2[id] = (counts2[id] || 0) + 1;
+          savePollCounts(counts2);
+          localStorage.setItem(VOTE_KEY, id);
+          if (ArenaAudio.isEnabled()) ArenaAudio.sfxSuccess();
+          showToast("Vote counted — thanks!");
+          renderPoll();
+        });
+      });
+    }
+  }
+
+  renderPoll();
+
+  /* ---------- General click SFX on primary buttons/links ---------- */
+  document.querySelectorAll(".btn, .card-link").forEach(el => {
+    el.addEventListener("click", () => {
+      if (ArenaAudio.isEnabled()) ArenaAudio.sfxWhoosh();
+    });
+  });
+
+});
+
+</script>
+</body>
+</html>
