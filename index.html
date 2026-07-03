@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Arena Codex — Collect. Spin. Battle.</title>
+<meta name="description" content="A fan's guide to creature-collecting battles, spinning top duels, and anime storytelling — with original characters, lore, quizzes, and infographics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;700;800&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div id="toast" class="toast" aria-live="polite"></div>
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="#top" class="brand">
+      <span class="brand-disc" aria-hidden="true"></span>
+      Arena Codex
+    </a>
+
+    <nav id="main-nav" class="main-nav">
+      <a href="#collect101">Collect 101</a>
+      <a href="#spin101">Spin 101</a>
+      <a href="#genres101">Genres 101</a>
+      <a href="#lore">Lore</a>
+      <a href="#guides">Guides</a>
+      <a href="#compare">Compare</a>
+      <a href="#quiz">Quiz</a>
+    </nav>
+
+    <div class="header-actions">
+      <button id="sound-toggle" class="icon-btn" type="button" aria-pressed="false">
+        <span class="sound-icon">🔈</span>
+        <span class="sound-label">Sound off</span>
+      </button>
+      <button id="nav-toggle" class="icon-btn menu-btn" type="button" aria-expanded="false" aria-controls="main-nav">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">an unofficial fan companion</p>
+      <h1>Collect. Spin. Battle.<br>Every arena, one codex.</h1>
+      <p class="hero-sub">
+        A beginner-friendly guide to creature-collecting battle games, spinning-top duels,
+        and the anime storytelling that powers them both — explained with original
+        creatures, bladers, and worlds so you can learn the ideas without needing to
+        already know the franchises.
+      </p>
+      <div class="hero-cta">
+        <a href="#collect101" class="btn btn-primary">Start with the basics</a>
+        <a href="#quiz" class="btn btn-ghost">Take the battle-style quiz</a>
+      </div>
+    </div>
+    <div class="hero-visual" aria-hidden="true">
+      <div class="disc disc-a"><i class="core-glyph">⚡</i></div>
+      <div class="disc disc-b"><i class="core-glyph">🔥</i></div>
+      <div class="disc disc-c"><i class="core-glyph">💧</i></div>
+    </div>
+  </section>
+
+  <!-- OVERVIEW -->
+  <section class="section" id="overview">
+    <div class="section-inner">
+      <h2 class="section-title">Three worlds, one guide</h2>
+      <p class="section-lead">Jump into whichever corner of battle-anime fandom you're curious about.</p>
+      <div class="card-grid three">
+        <article class="card">
+          <div class="card-icon">🧬</div>
+          <h3>Collect &amp; Battle 101</h3>
+          <p>How creature-collecting games work: types, teams, turn-based duels, and why building
+          a balanced squad matters more than raw power.</p>
+          <a href="#collect101" class="card-link">Read the basics →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">🌀</div>
+          <h3>Spin Duels 101</h3>
+          <p>How spinning-top battles work: launch power, stadium hazards, and the four disc
+          styles that decide whether you out-hit or out-last your rival.</p>
+          <a href="#spin101" class="card-link">Read the basics →</a>
+        </article>
+        <article class="card">
+          <div class="card-icon">🎬</div>
+          <h3>Anime Genres 101</h3>
+          <p>The storytelling DNA behind battle anime — shonen grit, fantasy myth-building,
+          and sci-fi speculation — and how each genre shapes its fights.</p>
+          <a href="#genres101" class="card-link">Read the basics →</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- COLLECT 101 -->
+  <section class="section alt" id="collect101">
+    <div class="section-inner">
+      <span class="section-tag">Collect &amp; Battle 101</span>
+      <h2 class="section-title">Building a team, one type at a time</h2>
+      <p class="section-lead">
+        In creature-collecting games, you don't play as one fixed character — you recruit a
+        roster of creatures, each with an elemental <strong>type</strong>, then send them into
+        turn-based duels. Here's the loop, illustrated with an original example world we call
+        the <strong>Rift Isles</strong>.
+      </p>
+
+      <div class="two-col">
+        <div>
+          <h3>The core loop</h3>
+          <ol class="step-list">
+            <li><strong>Recruit</strong> — meet wild creatures (here, "Wyldkin") and bond with them instead of buying or building them.</li>
+            <li><strong>Train</strong> — battles and bonding raise stats and can trigger evolution into a stronger stage.</li>
+            <li><strong>Duel</strong> — trainers send one creature at a time into turn-based exchanges of moves.</li>
+            <li><strong>Type-match</strong> — every move has a type, and each type is strong against one type and weak against another.</li>
+          </ol>
+        </div>
+        <div class="infobox">
+          <h4>Why types matter</h4>
+          <p>A type chart turns raw stats into a strategy puzzle: a slower, weaker creature can still
+          win if its type counters the opponent's. Reading the matchup before you attack is the whole game.</p>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Original type chart — Rift Isles set</h3>
+      <p class="muted-note">Eight original types, each strong against one and weak against one, to keep matchups easy to read at a glance.</p>
+      <div class="type-chart" id="type-chart"></div>
+    </div>
+  </section>
+
+  <!-- SPIN 101 -->
+  <section class="section" id="spin101">
+    <div class="section-inner">
+      <span class="section-tag">Spin Duels 101</span>
+      <h2 class="section-title">Launch, clash, out-spin</h2>
+      <p class="section-lead">
+        Spin-duel games swap teams of creatures for a single customizable top — here we'll call
+        it a <strong>Spin Core</strong> — launched into a stadium arena. Whoever keeps spinning
+        (or knocks the other out of the ring) wins.
+      </p>
+
+      <div class="two-col reverse">
+        <div class="infobox">
+          <h4>Match length</h4>
+          <p>Most duels resolve in under a minute. That speed is the genre's signature: prep is
+          slow and thoughtful (build your Core), but the duel itself is fast and visual.</p>
+        </div>
+        <div>
+          <h3>Four driver styles</h3>
+          <ul class="check-list">
+            <li><strong>Attack</strong> — sacrifices spin time for hard-hitting collisions.</li>
+            <li><strong>Defense</strong> — absorbs hits and holds the center of the stadium.</li>
+            <li><strong>Stamina</strong> — wide, steady spin built to outlast everyone else.</li>
+            <li><strong>Balance</strong> — no clear weakness, but no standout strength either.</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3 class="sub-heading">Anatomy of a Spin Core</h3>
+      <div class="parts-diagram" id="parts-diagram"></div>
+
+      <h3 class="sub-heading">Stadium hazards</h3>
+      <div class="card-grid three tight">
+        <article class="card small">
+          <div class="card-icon">🌪️</div>
+          <h4>Center vortex</h4>
+          <p>Pulls both discs inward, forcing early contact and rewarding Attack drivers.</p>
+        </article>
+        <article class="card small">
+          <div class="card-icon">🧱</div>
+          <h4>Ring walls</h4>
+          <p>Angled barriers that redirect knock-outs — or save a disc that's drifting toward the edge.</p>
+        </article>
+        <article class="card small">
+          <div class="card-icon">🕳️</div>
+          <h4>Pocket dips</h4>
+          <p>Sunken sections that slow a disc's spin decay, favoring Stamina and Defense builds.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- GENRES 101 -->
+  <section class="section alt" id="genres101">
+    <div class="section-inner">
+      <span class="section-tag">Anime Genres 101</span>
+      <h2 class="section-title">The storytelling behind the fights</h2>
+      <p class="section-lead">
+        Both battle formats above borrow their emotional beats from anime storytelling
+        traditions. Knowing the genre tropes makes it easier to spot why a fight is written
+        the way it is.
+      </p>
+      <div class="card-grid three">
+        <article class="card">
+          <div class="card-icon">🔥</div>
+          <h3>Shonen</h3>
+          <p>Rivalry, training arcs, and hard-won power-ups. The fight matters less than what it
+          proves about the character's growth and bond with their friends.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🗡️</div>
+          <h3>Fantasy</h3>
+          <p>Myth-scale stakes, chosen-one arcs, and magic systems with rules. Battles often
+          reveal ancient history or a prophecy the hero didn't know they were part of.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon">🛰️</div>
+          <h3>Sci-fi</h3>
+          <p>Technology as both tool and threat. Fights explore what a new power costs its user,
+          and often ask whether "stronger" and "better" are the same thing.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- LORE -->
+  <section class="section" id="lore">
+    <div class="section-inner">
+      <span class="section-tag">Lore &amp; universe</span>
+      <h2 class="section-title">Glossary of common tropes</h2>
+      <p class="section-lead">Terms you'll see across almost every battle-anime story, regardless of genre.</p>
+      <div class="accordion" id="trope-accordion"></div>
+    </div>
+  </section>
+
+  <!-- GUIDES -->
+  <section class="section alt" id="guides">
+    <div class="section-inner">
+      <span class="section-tag">Character &amp; item guides</span>
+      <h2 class="section-title">Meet the Rift Isles cast</h2>
+      <p class="section-lead">Original creatures, bladers, and gear used throughout this guide to illustrate the concepts above.</p>
+
+      <h3 class="sub-heading">Wyldkin</h3>
+      <div class="card-grid four" id="wyldkin-grid"></div>
+
+      <h3 class="sub-heading">Bladers</h3>
+      <div class="card-grid two" id="blader-grid"></div>
+
+      <h3 class="sub-heading">Gear</h3>
+      <div class="card-grid three tight" id="gear-grid"></div>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="section" id="compare">
+    <div class="section-inner">
+      <span class="section-tag">Comparison</span>
+      <h2 class="section-title">How the battle styles stack up</h2>
+      <p class="section-lead">Same fandom energy, different rhythms. Here's how they compare across the things that matter most in a duel.</p>
+      <div class="table-wrap">
+        <table class="compare-table">
+          <thead>
+            <tr>
+              <th>Dimension</th>
+              <th>Creature battles</th>
+              <th>Spin duels</th>
+              <th>General anime action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Pacing</td>
+              <td>Slow, deliberate — plan each turn</td>
+              <td>Fast — resolved in under a minute</td>
+              <td>Variable, paced for drama</td>
+            </tr>
+            <tr>
+              <td>Core strategy</td>
+              <td>Type matchups &amp; team building</td>
+              <td>Part combos &amp; launch timing</td>
+              <td>Character growth &amp; clever tactics</td>
+            </tr>
+            <tr>
+              <td>Progression</td>
+              <td>Training &amp; evolution over time</td>
+              <td>Customizing &amp; swapping parts</td>
+              <td>Training arcs &amp; power-ups</td>
+            </tr>
+            <tr>
+              <td>What decides the win</td>
+              <td>Best type + move choice</td>
+              <td>Physics + build tuning</td>
+              <td>Willpower, bonds, cleverness</td>
+            </tr>
+            <tr>
+              <td>Storytelling focus</td>
+              <td>Companionship with your team</td>
+              <td>Rivalry and self-improvement</td>
+              <td>Whatever the genre emphasizes</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUIZ -->
+  <section class="section alt" id="quiz">
+    <div class="section-inner narrow">
+      <span class="section-tag">Interactive</span>
+      <h2 class="section-title">Which battle style fits you?</h2>
+      <p class="section-lead">Answer five quick questions — no right answers, just vibes.</p>
+      <div id="quiz-app" class="quiz-app"></div>
+    </div>
+  </section>
+
+  <!-- POLL -->
+  <section class="section" id="poll">
+    <div class="section-inner narrow">
+      <span class="section-tag">Poll</span>
+      <h2 class="section-title">What should we cover next?</h2>
+      <p class="section-lead">Vote once — results update live and are saved on this device.</p>
+      <div id="poll-app" class="poll-app"></div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <p><strong>Arena Codex</strong> is an unofficial, fan-made educational guide. All creatures,
+    bladers, and worlds shown here are original and not affiliated with or representative of
+    any specific franchise.</p>
+    <p class="muted-note">Sound effects and music are original, synthesized in-browser.</p>
+  </div>
+</footer>
+
+<script src="js/audio.js"></script>
+<script src="js/data.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
